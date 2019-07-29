@@ -29,7 +29,7 @@ n_points = 0
 length = 0
 
 # Getting our AI, which we call "brain", and that contains our neural network that represents our Q-function
-brain = Dqn(5,3,0.9)
+brain = Dqn(6,3,0.9)
 action2rotation = [0,20,-20]
 last_reward = 0
 scores = []
@@ -122,12 +122,13 @@ class Game(Widget):
         longueur = self.width
         largeur = self.height
         if first_update:
+            self.last_time = 0
             init()
 
         xx = goal_x - self.car.x
         yy = goal_y - self.car.y
         orientation = Vector(*self.car.velocity).angle((xx,yy))/180.
-        last_signal = [self.car.signal1, self.car.signal2, self.car.signal3, orientation, -orientation]
+        last_signal = [self.car.signal1, self.car.signal2, self.car.signal3, orientation, -orientation, self.last_time]
         action = brain.update(last_reward, last_signal)
         scores.append(brain.score())
         rotation = action2rotation[action]
@@ -137,15 +138,17 @@ class Game(Widget):
         self.ball2.pos = self.car.sensor2
         self.ball3.pos = self.car.sensor3
 
+        # If car is in the sand
         if sand[int(self.car.x),int(self.car.y)] > 0:
             self.car.velocity = Vector(1, 0).rotate(self.car.angle)
             last_reward = -5 # -1 to -5
         else: # otherwise
             self.car.velocity = Vector(6, 0).rotate(self.car.angle)
-            last_reward = -0.2 # - 0.2 to -1
+            last_reward = -0.1 # - 0.2 to -1
             if distance < last_distance:
                 last_reward = 0.02 # 0.1 to 0.02
 
+        # If car is on the edge of the map
         if self.car.x < 10:
             self.car.x = 10
             last_reward = -5 # -1 to -5
