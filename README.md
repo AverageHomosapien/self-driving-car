@@ -1,9 +1,9 @@
-# Self Driving Car
+# Q-learning Self Driving Car
 
 ![Car Driving Game](https://i.postimg.cc/YS5DWmMG/Car-Driving-Game.png)
 
 ## Brief:
-A deep-learning self-driving car.
+A Deep Q-learning self-driving car.
 
 To Play: Type "python map.py" to call the game
 
@@ -26,5 +26,5 @@ Click on the save button to save the AI. Then click the load button to re-load a
 
 The car is written in the PyTorch framework.
 
-It has 2 hidden layers with a ReLU cost function and an output layer with a Sigmoid function.
+It has 3 hidden layers with a ReLU cost function and an output layer with a Sigmoid function.
 The action choice is based on a Softmax function.
