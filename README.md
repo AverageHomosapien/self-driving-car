@@ -1,11 +1,11 @@
-# Q-learning Self Driving Car
+# Deep Q-learning Self Driving Car
 
 ![Car Driving Game](https://i.postimg.cc/YS5DWmMG/Car-Driving-Game.png)
 
 ## Brief:
 A Deep Q-learning self-driving car.
 
-To Play: Type "python map.py" to call the game
+To Play: Type "python map.py" to call the game. The map will start blank.
 
 The car will learn over time, and attempt to reach its goal in the TOP LEFT and the BOTTOM RIGHT of the map.
 
