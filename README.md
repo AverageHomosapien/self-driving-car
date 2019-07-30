@@ -1,6 +1,6 @@
 # Self Driving Car
 
-![Car Driving Game](https://postimg.cc/Y4xxc04M)
+![Car Driving Game](https://i.postimg.cc/YS5DWmMG/Car-Driving-Game.png)
 
 ## Brief:
 A deep-learning self-driving car.
