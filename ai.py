@@ -20,16 +20,19 @@ class Network(nn.Module):
         super(Network, self).__init__()
         self.input_size = input_size
         self.nb_action = nb_action
-        self.hidden_1_size = 15
-        self.hidden_2_size = 15 # second layer added
+        self.hidden_1_size = 8
+        self.hidden_2_size = 12 # second layer added
+        self.hidden_3_size = 8
         self.fc1 = nn.Linear(input_size, self.hidden_1_size)
         self.fc2 = nn.Linear(self.hidden_1_size, self.hidden_2_size)
-        self.fc3 = nn.Linear(self.hidden_2_size, nb_action)
+        self.fc3 = nn.Linear(self.hidden_2_size, self.hidden_3_size)
+        self.fc4 = nn.Linear(self.hidden_3_size, nb_action)
 
     def forward(self, state):
         x = F.relu(self.fc1(state))
         y = F.relu(self.fc2(x))
-        q_values = self.fc3(y)
+        z = F.relu(self.fc3(y))
+        q_values = self.fc4(z)
         return q_values
 
 # Implementing Experience Replay
